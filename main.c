@@ -14,9 +14,24 @@ typedef struct {
     float y;
 } vec2;
 
+typedef struct {
+    int a;
+    int b;
+    int c;
+} args_t;
+
+bool vec_equal(vec2 a, vec2 b) {
+    return a.x == b.x && a.y == b.y;
+}
+
 void func(MyFloat f) {
     f.a = 5;
     printf("%d %d", f.a, f.b);
+}
+
+void my_init(vec2* v) {
+    v->x = 1;
+    v->y = 2;
 }
 
 int main(void) {
@@ -25,8 +40,10 @@ int main(void) {
     my_float.a = 1;
 
     vec2 vec;
-    vec.x = 2.0f;
-    vec.y = 5.0f;
+    // Alright, this is working w/ pointers
+    my_init(&vec);
+
+    printf("%f %f\n", vec.x, vec.y);
 
     vec2 myVec = { .x = 1.0f, .y = 2.0f };
 
