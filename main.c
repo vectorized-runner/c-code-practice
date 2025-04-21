@@ -3,29 +3,34 @@
 
 uint8_t mySmallInteger;
 
-struct MyFloat {
+typedef struct {
     int a;
     int b;
     int c;
-};
+} MyFloat;
 
-void is_this_allowed() {
-    return;
+typedef struct {
+    float x;
+    float y;
+} vec2;
+
+void func(MyFloat f) {
+    f.a = 5;
+    printf("%d %d", f.a, f.b);
 }
 
 int main(void) {
     // This comment is allowed! Lol.
-    struct MyFloat my_float;
+    MyFloat my_float;
     my_float.a = 1;
 
+    vec2 vec;
+    vec.x = 2.0f;
+    vec.y = 5.0f;
 
-    // Let's do for loop
-    for (int i = 0; i < 10; i++) {
-        printf("%d\n", i);
-    }
+    vec2 myVec = { .x = 1.0f, .y = 2.0f };
 
-    printf("%d\n", my_float.a);
-    is_this_allowed();
+    printf("%f\n", myVec.x);
 
     printf("Hello, World! %d\n", mySmallInteger);
     return 0;
