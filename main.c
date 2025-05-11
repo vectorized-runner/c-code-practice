@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 uint8_t mySmallInteger;
 const int myVariable = 3;
@@ -51,14 +52,77 @@ int test_func(int x) {
     return x;
 }
 
+// todo: data structure
+// todo: bit hacking
+// todo: memcpy, memcmp
+// todo:
+
+// todo
+// enum my_enum : unsigned int {
+// };
+
+
+// these attributes aren't acknowledged for some reason
+/*
+[[unsequenced]]
+void what_is_this() {
+    // todo: implement
+}
+*/
+
+int r = 0;
+
+// these attributes aren't acknowledged for some reason
+/*
+// Exists for compiler optimization, multiple calls = single call
+[[reproducible]]
+int repro_func() {
+    if (r == 0) {
+        r++;
+        return 3;
+    }
+
+    return 5;
+}
+*/
+
+// nice. this makes the rest of the code blacked out
+[[noreturn]]
+void kill_me() {
+    exit(0);
+}
+
 [[nodiscard("this value is fucking important")]]
 int my_func() {
     return 10;
 }
 
+// This embed thing didn't work
+/*
+const char message_text[] = {
+#embed "message.txt" if_empty('M', 'i', 's', 's', 'i', 'n', 'g', '\n')
+    ,'\0'
+    };
+*/
 
 int main(void) {
+    // let's try dynamic memory allocation
+    // ok. nice.
+    void* ptr = malloc(100);
+    free(ptr);
+
+    // int a  = repro_func();
+    // this should be optimized away (let's see if it'll be)
+    // a = repro_func();
+    // printf("value of repro is %d\n", a);
+
+    // this is crazy
+    struct { int a[3], b; } w[] = { [0].a = {1}, [1].a[0] = 2 };
+
     //_BitInt(4) sbi;
+    // kill_me();
+    // bool a = true;
+    // printf("fml: %d\n", a);
 
     printf("fml: %d\n", sizeof(int));
     printf("union size: %ld\n", sizeof(union my_union));
