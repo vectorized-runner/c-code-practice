@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 uint8_t mySmallInteger;
+const int myVariable = 3;
 
 typedef struct {
     int a;
@@ -20,6 +21,12 @@ typedef struct {
     int c;
 } args_t;
 
+union my_union {
+    int x;
+    int y;
+    int z;
+};
+
 bool vec_equal(vec2 a, vec2 b) {
     return a.x == b.x && a.y == b.y;
 }
@@ -29,19 +36,53 @@ void func(MyFloat f) {
     printf("%d %d", f.a, f.b);
 }
 
-void my_init(vec2* v) {
-    v->x = 1;
-    v->y = 2;
+[[deprecated("please don't use this")]]
+int test_func(int x) {
+    switch (x) {
+        case 1:
+            x = x + 10;
+        [[fallthrough]];
+        case 2:
+            x = x + 20;
+        default:
+            return x;
+    }
+
+    return x;
 }
 
+[[nodiscard("this value is fucking important")]]
+int my_func() {
+    return 10;
+}
+
+
 int main(void) {
+    //_BitInt(4) sbi;
+
+    printf("fml: %d\n", sizeof(int));
+    printf("union size: %ld\n", sizeof(union my_union));
+
+    test_func(10);
+
+    float f = {};
+    vec2 v = {};
+    v = (vec2){.x = 1, .y = 2, };
+
+    my_func();
+
+    int x;
+    x = 0b111;
+    x = 0b1111'1111;
+    printf("%d\n", x);
+
     // This comment is allowed! Lol.
     MyFloat my_float;
     my_float.a = 1;
 
     vec2 vec;
-    // Alright, this is working w/ pointers
-    my_init(&vec);
+    vec.x = 3;
+    vec.x = vec.x * myVariable;
 
     printf("%f %f\n", vec.x, vec.y);
 
