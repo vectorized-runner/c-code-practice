@@ -1,9 +1,41 @@
+#include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <_assert.h>
+#include "stdalign.h"
+#include <_static_assert.h>
+#include <stdnoreturn.h>
+
+// todo: data structure
+// todo: bit hacking
+// todo: memcpy, memcmp
+// todo: ecs
+// todo: assertions
+// todo: compiler flags (-o3 or something)
+// todo: allocators
+// todo: unit testing
+// todo: which compiler am I compiling with?
+
+// Flags:
+// -Wall and -Wextra on GCC
+// -Weverything on Clang
+// /W4 or /Wall on MSVC
 
 uint8_t mySmallInteger;
 const int myVariable = 3;
+
+struct v {
+    // anonymous union
+    union {
+        int a;
+        long b;
+    };
+
+    int c;
+} v;
+
 
 typedef struct {
     int a;
@@ -11,7 +43,8 @@ typedef struct {
     int c;
 } MyFloat;
 
-typedef struct {
+// This is the correct way to create types in modern C. Solves all the problems
+typedef struct vec2 {
     float x;
     float y;
 } vec2;
@@ -51,11 +84,6 @@ int test_func(int x) {
 
     return x;
 }
-
-// todo: data structure
-// todo: bit hacking
-// todo: memcpy, memcmp
-// todo:
 
 // todo
 // enum my_enum : unsigned int {
@@ -97,6 +125,11 @@ int my_func() {
     return 10;
 }
 
+struct sse_t {
+    // this can be used. clion doesn't recognize it
+    alignas(16) float sse_data[4];
+};
+
 // This embed thing didn't work
 /*
 const char message_text[] = {
@@ -105,11 +138,33 @@ const char message_text[] = {
     };
 */
 
+// Interesting
+noreturn void my_noreturn() {
+    exit(0);
+}
+
 int main(void) {
+    printf("%d\n", __alignof(char));
+    printf("%d\n", __alignof(int));
+    printf("%d\n", __alignof(int*));
+
+    struct v myv;
+    myv.a = 1;
+    myv.b = 2;
+
+
+    my_noreturn();
+
     // let's try dynamic memory allocation
     // ok. nice.
-    void* ptr = malloc(100);
-    free(ptr);
+    char str[] = "almost every programmer should know memset!";
+    memset (str,'-',6);
+    puts (str);
+
+    // interesting
+    int a;
+    typeof(a) c;
+    c = 5;
 
     // int a  = repro_func();
     // this should be optimized away (let's see if it'll be)
@@ -124,8 +179,13 @@ int main(void) {
     // bool a = true;
     // printf("fml: %d\n", a);
 
-    printf("fml: %d\n", sizeof(int));
+    printf("fml: %ld\n", sizeof(int));
     printf("union size: %ld\n", sizeof(union my_union));
+
+    int i = 0;
+
+    // static_assert(2 + 2 == 3, "you done fucked up");
+    assert(i == 1);
 
     test_func(10);
 
