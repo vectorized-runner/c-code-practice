@@ -6,6 +6,8 @@
 #include <_static_assert.h>
 #include <__stddef_unreachable.h>
 
+// C23 - Oct 2024
+
 // #1: Integer names
 uint8_t a;
 uint16_t b;
@@ -102,11 +104,14 @@ int fallthrough_example(int x) {
 // Executing unreachable() results in undefined behavior.
 // An implementation may use this to optimize impossible code branches away
 // (typically, in optimized builds) or to trap them to prevent further execution (typically, in debug builds).
-void bitex(int i) {
+void unreachable_ex(int i) {
     if (i == 1) {
     } else
         unreachable();
 }
+
+
+// Stuff I couldn't make work
 
 // auto
 void auto_example() {
@@ -114,10 +119,15 @@ void auto_example() {
     //auto myx = cos(myf);
 }
 
+// bit fields
+void bitfield_example() {
+
+}
+
 int main(void) {
     // kill_program();
 
-    bitex(2);
+    unreachable_ex(2);
 
     printf("%d\n", fallthrough_example(1));
     nodiscard_example();
