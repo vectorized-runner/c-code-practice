@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <tgmath.h>
 
 // #1: Integer names
 uint8_t a;
@@ -23,6 +24,11 @@ void example_typedef() {
     my_data_typedef instance2;
 }
 
+// #5 auto
+void auto_example() {
+    auto myf = 123.0f;
+    auto myx = cos(myf);
+}
 int main(void) {
     printf("aaa");
     return 0;
