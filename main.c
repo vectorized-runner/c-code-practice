@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <tgmath.h>
 #include <_static_assert.h>
+#include <__stddef_unreachable.h>
 
 // #1: Integer names
 uint8_t a;
@@ -97,7 +98,16 @@ int fallthrough_example(int x) {
     }
 }
 
-// Stuff I couldn't make work
+// #14 Unreachable
+// Executing unreachable() results in undefined behavior.
+// An implementation may use this to optimize impossible code branches away
+// (typically, in optimized builds) or to trap them to prevent further execution (typically, in debug builds).
+void bitex(int i) {
+    if (i == 1) {
+    } else
+        unreachable();
+}
+
 // auto
 void auto_example() {
     //auto myf = 123.0f;
@@ -106,6 +116,8 @@ void auto_example() {
 
 int main(void) {
     // kill_program();
+
+    bitex(2);
 
     printf("%d\n", fallthrough_example(1));
     nodiscard_example();
