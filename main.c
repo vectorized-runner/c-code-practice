@@ -73,6 +73,17 @@ void empty_init_example() {
     int ia[5] = {}; // == [0, 0, 0, 0, 0]
 }
 
+// #11 Deprecated
+[[deprecated("old function")]]
+void deprecated_example() {
+}
+
+// #12 Typeof
+void typeof_example() {
+    int a = 0;
+    typeof(a) b; // b is int
+}
+
 // Stuff I couldn't make work
 // auto
 void auto_example() {
@@ -83,7 +94,8 @@ void auto_example() {
 int main(void) {
     // kill_program();
 
-    // nodiscard_example();
+    nodiscard_example();
+    deprecated_example();
 
     bit_assign();
     // printf("%d\n", t);
