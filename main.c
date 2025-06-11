@@ -84,6 +84,19 @@ void typeof_example() {
     typeof(a) b; // b is int
 }
 
+// #13 Fallthrough
+int fallthrough_example(int x) {
+    switch (x) {
+        case 1:
+            x = x + 10;
+            [[fallthrough]];
+        case 2:
+            x = x + 20;
+        default:
+            return x;
+    }
+}
+
 // Stuff I couldn't make work
 // auto
 void auto_example() {
@@ -94,6 +107,7 @@ void auto_example() {
 int main(void) {
     // kill_program();
 
+    printf("%d\n", fallthrough_example(1));
     nodiscard_example();
     deprecated_example();
 
