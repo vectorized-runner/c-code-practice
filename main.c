@@ -5,6 +5,7 @@
 #include <tgmath.h>
 #include <_static_assert.h>
 #include <__stddef_unreachable.h>
+// #include <uchar.h>
 
 // C23 - Oct 2024
 
@@ -128,6 +129,11 @@ void auto_example() {
 // bit fields
 void bitfield_example() {
 
+}
+
+// unicode
+void unicode_ex() {
+    // char32_t c2 = U'🍌';
 }
 
 int main(void) {
