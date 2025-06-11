@@ -1,5 +1,7 @@
+#include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <tgmath.h>
 #include <_static_assert.h>
 
@@ -37,30 +39,31 @@ my_point example_init_1() {
     return p;
 }
 
-void example_init() {
+// #5 value initialization - advanced
+void example_init_advanced() {
     struct { int a[3], b; } w[] = { [0].a = {1}, [1].a[0] = 2 };
+    struct { int x[100]; } m = { .x[99] = 0 };
 }
 
-/*
-// #6 constexpr
-int calculate_t() {
-    int m = 0;
-
-    for (int i = 0; i < 10; i++) {
-        m += i;
-    }
-
-    return m;
-}
-
-constexpr int t = calculate_t();
-*/
-
-// #5 static assert
+// #6 static assert
 void static_assert_example() {
     // static_assert(2 + 2 == 3, "you done fucked up");
 }
 
+// #7 noreturn
+/*
+[[noreturn]]
+void kill_me() {
+    exit(0);
+}
+*/
+
+// #8
+
+// #9 Bit assignment
+void bit_assign() {
+    int x = 0b111; // x = 7
+}
 
 // Stuff I couldn't make work
 // auto
@@ -70,8 +73,10 @@ void auto_example() {
 }
 
 int main(void) {
+    // kill_me();
+
+    bit_assign();
     // printf("%d\n", t);
-    auto m = 1;
 
     printf("aaa");
     return 0;
