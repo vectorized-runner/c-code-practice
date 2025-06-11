@@ -118,6 +118,26 @@ void alignof_example() {
     printf("alignof int* is %d\n", alignof(int*));
 }
 
+// #16 alignas
+struct sse_t
+{
+    // Aligns `sse_data` on a 16 byte boundary.
+    alignas(16) float sse_data[4];
+};
+
+// #17 anonymous structs & unions
+struct v
+{
+    union // anonymous union
+    {
+        int a;
+        long b;
+    };
+    int c;
+} v;
+
+
+
 // Stuff I couldn't make work
 
 // auto
@@ -128,7 +148,7 @@ void auto_example() {
 
 // bit fields
 void bitfield_example() {
-
+    //_BitInt(4) sbi;
 }
 
 // unicode
@@ -139,8 +159,12 @@ void unicode_ex() {
 int main(void) {
     // kill_program();
 
+    at_quick_exit(quickexit_func);
+    quick_exit(10);
+
     alignof_example();
     unreachable_ex(2);
+
 
     printf("%d\n", fallthrough_example(1));
     nodiscard_example();
