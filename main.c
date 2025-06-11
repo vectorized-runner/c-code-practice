@@ -56,7 +56,11 @@ void kill_program() {
     exit(0);
 }
 
-// #8
+// #8 nodiscard
+[[nodiscard("return value is fucking important")]]
+int nodiscard_example() {
+    return 10;
+}
 
 // #9 Bit assignment
 void bit_assign() {
@@ -72,6 +76,8 @@ void auto_example() {
 
 int main(void) {
     // kill_program();
+
+    // nodiscard_example();
 
     bit_assign();
     // printf("%d\n", t);
