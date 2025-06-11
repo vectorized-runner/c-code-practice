@@ -51,12 +51,10 @@ void static_assert_example() {
 }
 
 // #7 noreturn
-/*
 [[noreturn]]
-void kill_me() {
+void kill_program() {
     exit(0);
 }
-*/
 
 // #8
 
@@ -73,7 +71,7 @@ void auto_example() {
 }
 
 int main(void) {
-    // kill_me();
+    // kill_program();
 
     bit_assign();
     // printf("%d\n", t);
