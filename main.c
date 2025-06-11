@@ -67,6 +67,11 @@ void bit_assign() {
     int x = 0b111; // x = 7
 }
 
+// #10 Empty Initializer
+void empty_init_example() {
+    my_point p = { }; // p.x = 0, p.y = 0, p.z = 0
+}
+
 // Stuff I couldn't make work
 // auto
 void auto_example() {
