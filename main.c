@@ -110,6 +110,12 @@ void unreachable_ex(int i) {
         unreachable();
 }
 
+// #15 alignof
+void alignof_example() {
+    printf("alignof char is %d\n", alignof(char));
+    printf("alignof int is %d\n", alignof(int));
+    printf("alignof int* is %d\n", alignof(int*));
+}
 
 // Stuff I couldn't make work
 
@@ -127,6 +133,7 @@ void bitfield_example() {
 int main(void) {
     // kill_program();
 
+    alignof_example();
     unreachable_ex(2);
 
     printf("%d\n", fallthrough_example(1));
