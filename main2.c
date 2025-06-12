@@ -143,7 +143,7 @@ noreturn void my_noreturn() {
     exit(0);
 }
 
-int main2(void) {
+int main(void) {
     printf("%d\n", __alignof(char));
     printf("%d\n", __alignof(int));
     printf("%d\n", __alignof(int*));

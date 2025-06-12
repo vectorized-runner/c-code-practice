@@ -6,6 +6,6 @@ set(CMAKE_C_STANDARD 23)
 
 
 add_executable(c_code_practice main2.c
-        main.c
+        modern-c-features/modern_c.c
         allocators/linearallocator.h)
 

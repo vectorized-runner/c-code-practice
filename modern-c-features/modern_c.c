@@ -169,24 +169,3 @@ void bitfield_example() {
 void unicode_ex() {
     //char32_t c2 = U'🍌';
 }
-
-int main(void) {
-    //kill_program();
-
-    // at_quick_exit(quickexit_func);
-    // quick_exit(10);
-
-    //alignof_example();
-    unreachable_ex(2);
-
-
-    printf("%d\n", fallthrough_example(1));
-    nodiscard_example();
-    deprecated_example();
-
-    bit_assign();
-    // printf("%d\n", t);
-
-    printf("aaa");
-    return 0;
-}
