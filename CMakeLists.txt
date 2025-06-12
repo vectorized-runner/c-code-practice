@@ -11,6 +11,7 @@ add_library(unity STATIC Unity/src/unity.c)
 add_executable(c_code_practice
         modern-c-features/modern_c.c
         allocators/linearallocator.h
-        main.c)
+        main.c
+        allocators/tests/tests_linearallocator.h)
 
 target_link_libraries(c_code_practice PRIVATE unity)

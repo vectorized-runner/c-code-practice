@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "unity.h"
+#include "allocators/tests/tests_linearallocator.h"
 
 // todo: data structure
 // todo: bit hacking
@@ -20,9 +21,11 @@ void tearDown(void) {
 }
 
 int main(void) {
-    printf("running main!");
+    printf("running main!   ");
 
     UNITY_BEGIN();
+
+    tests_linearallocator_run();
 
     // RUN_TEST(test_Addition);
 
