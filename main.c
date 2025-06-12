@@ -51,16 +51,21 @@ void example_init_advanced() {
 
 // #6 static assert
 void static_assert_example() {
-    // static_assert(2 + 2 == 3, "you done fucked up");
+    const int x = 2;
+    static_assert(2 + x == 4, "you done fucked up");
 }
 
 // #7 noreturn
 [[noreturn]]
 void kill_program() {
+    if (x == 0)
     exit(0);
+    else
+        exit(1);
 }
 
 // #8 nodiscard
+//[[nosanitize]]
 [[nodiscard("return value is fucking important")]]
 int nodiscard_example() {
     return 10;
@@ -85,13 +90,14 @@ void deprecated_example() {
 // #12 Typeof
 void typeof_example() {
     int a = 0;
-    typeof(a) b; // b is int
+    typeof(a) b = 3; // b is int
 }
 
 // #13 Fallthrough
 int fallthrough_example(int x) {
     switch (x) {
         case 1:
+        case 3:
             x = x + 10;
             [[fallthrough]];
         case 2:
@@ -105,15 +111,16 @@ int fallthrough_example(int x) {
 // Executing unreachable() results in undefined behavior.
 // An implementation may use this to optimize impossible code branches away
 // (typically, in optimized builds) or to trap them to prevent further execution (typically, in debug builds).
-void unreachable_ex(int i) {
+int unreachable_ex(int i) {
     if (i == 1) {
+        return 0;
     } else
         unreachable();
 }
 
 // #15 alignof
 void alignof_example() {
-    printf("alignof char is %d\n", alignof(char));
+    printf("alignof char is %d\n", alignof(my_point));
     printf("alignof int is %d\n", alignof(int));
     printf("alignof int* is %d\n", alignof(int*));
 }
@@ -136,33 +143,40 @@ struct v
     int c;
 } v;
 
+// #18 nullptr
+void foo(int a) {
+}
 
+void nullptr_example() {
+    //foo(NULL);
+    //foo(nullptr);
+}
 
 // Stuff I couldn't make work
 
 // auto
 void auto_example() {
-    //auto myf = 123.0f;
+    // auto myf = myfreturn();
     //auto myx = cos(myf);
 }
 
 // bit fields
 void bitfield_example() {
-    //_BitInt(4) sbi;
+    //_BitInt(1024) sbi;
 }
 
 // unicode
 void unicode_ex() {
-    // char32_t c2 = U'🍌';
+    //char32_t c2 = U'🍌';
 }
 
 int main(void) {
-    // kill_program();
+    //kill_program();
 
-    at_quick_exit(quickexit_func);
-    quick_exit(10);
+    // at_quick_exit(quickexit_func);
+    // quick_exit(10);
 
-    alignof_example();
+    //alignof_example();
     unreachable_ex(2);
 
 
