@@ -7,7 +7,7 @@ const int assertion_exit = 10;
 
 void debug_assert(bool condition, const char* message) {
     if (!condition) {
-        printf("Assertion Failed:%s\n", message);
+        printf("Assertion Failed '%s'\n", message);
         exit(assertion_exit);
     }
 }
