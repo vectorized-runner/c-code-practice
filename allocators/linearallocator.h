@@ -1,6 +1,8 @@
 #ifndef LINEARALLOCATOR_H
 #define LINEARALLOCATOR_H
 #include <stdlib.h>
+#include <string.h>
+
 #include "../assertions/debugassert.h"
 
 typedef struct linear_allocator {
@@ -24,13 +26,17 @@ linear_allocator linear_allocator_create(int size) {
 
 // TODO: Clear memory
 // TODO: Alignment
-void* linear_allocator_alloc(linear_allocator* alloc, int size) {
+void* linear_allocator_alloc(linear_allocator* alloc, int size, bool clearMemory) {
     int prevOffset = alloc->offset;
     int newOffset = prevOffset + size;
     debug_assert(newOffset <= alloc->size, "linear allocator: alloc out of bounds");
-    void* newPtr = alloc->buffer + prevOffset;
+    void* ptr = &alloc->buffer[prevOffset];
+    if (clearMemory) {
+        memset(ptr, 0, size);
+    }
+
     alloc->offset = newOffset;
-    return newPtr;
+    return ptr;
 }
 
 void linear_allocator_clear(linear_allocator* alloc) {
