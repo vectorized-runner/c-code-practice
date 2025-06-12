@@ -5,7 +5,8 @@ set(CMAKE_C_STANDARD 23)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 
-add_executable(c_code_practice main2.c
+add_executable(c_code_practice
         modern-c-features/modern_c.c
-        allocators/linearallocator.h)
+        allocators/linearallocator.h
+        main.c)
 
