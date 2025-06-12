@@ -23,10 +23,7 @@ linear_allocator linear_allocator_create(int size) {
 void* linear_allocator_alloc(linear_allocator* alloc, int size) {
     int prevCurrent = alloc->current;
     int newCurrent = prevCurrent + size;
-    if (newCurrent > alloc->size) {
-        return nullptr;
-    }
-
+    debug_assert(newCurrent <= alloc->size, "linear allocator: alloc out of bounds");
     void* newPtr = alloc->buffer + prevCurrent;
     alloc->current = newCurrent;
     return newPtr;
