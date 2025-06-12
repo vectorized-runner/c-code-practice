@@ -12,6 +12,7 @@ add_executable(c_code_practice
         modern-c-features/modern_c.c
         allocators/linearallocator.h
         main.c
-        allocators/tests/tests_linearallocator.h)
+        allocators/tests/tests_linearallocator.h
+        assertions/debugassert.h)
 
 target_link_libraries(c_code_practice PRIVATE unity)

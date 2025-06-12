@@ -1,6 +1,7 @@
 #ifndef LINEARALLOCATOR_H
 #define LINEARALLOCATOR_H
 #include <stdlib.h>
+#include "../assertions/debugassert.h"
 
 typedef struct linear_allocator {
     void* buffer;
@@ -9,6 +10,7 @@ typedef struct linear_allocator {
 } linear_allocator;
 
 linear_allocator linear_allocator_create(int size) {
+    debug_assert(size > 0, "size must be positive");
     linear_allocator alloc;
     alloc.buffer = malloc(size);
     alloc.size = size;
