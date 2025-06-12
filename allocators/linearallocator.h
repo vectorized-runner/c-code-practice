@@ -33,4 +33,8 @@ void* linear_allocator_alloc(linear_allocator* alloc, int size) {
     return newPtr;
 }
 
+void linear_allocator_clear(linear_allocator* alloc) {
+    alloc->offset = 0;
+}
+
 #endif //LINEARALLOCATOR_H
