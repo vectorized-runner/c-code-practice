@@ -10,7 +10,7 @@ typedef struct linear_allocator {
 } linear_allocator;
 
 linear_allocator linear_allocator_create(int size) {
-    debug_assert(size > 0, "size must be positive");
+    debug_assert(size > 0, "linear allocator: size must be positive");
     linear_allocator alloc;
     alloc.buffer = malloc(size);
     alloc.size = size;
