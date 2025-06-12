@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "unity.h"
 
 // todo: data structure
 // todo: bit hacking
@@ -10,7 +11,22 @@
 // todo: unit testing
 // todo: which compiler am I compiling with?
 
+void setUp(void) {
+    // set stuff up here
+}
+
+void tearDown(void) {
+    // clean stuff up here
+}
+
 int main(void) {
     printf("running main!");
-    return 0;
+
+    UNITY_BEGIN();
+
+    // RUN_TEST(test_Addition);
+
+    printf("tests finished.");
+
+    return UNITY_END();
 }
