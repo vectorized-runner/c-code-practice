@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "unity.h"
-#include "allocators/tests/tests_linearallocator.h"
+#include "allocators/linearallocator.h"
 
 // todo: data structure
 // todo: bit hacking
@@ -21,15 +20,10 @@ void tearDown(void) {
 }
 
 int main(void) {
-    printf("running main!   ");
+    // printf("running main!   ");
 
-    UNITY_BEGIN();
+    linear_allocator la = linear_allocator_create(100);
 
-    tests_linearallocator_run();
-
-    // RUN_TEST(test_Addition);
-
-    printf("tests finished.");
-
-    return UNITY_END();
+    void* mem = linear_allocator_alloc(&la, 100, 128, true);
+    printf("mem address is %ld", (uintptr_t)mem);
 }
